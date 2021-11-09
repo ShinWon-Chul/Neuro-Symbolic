@@ -1,0 +1,7 @@
+BART	nationality	USA
+BART	placeOfBirth	NEWYORK
+NEWYORK	locatedIn	USA
+BART	hasFather	HOMMER
+HOMMER	nationality	USA
+HOMMER	placeOfBirth	NEWYORK
+BART	bornIn	USA
