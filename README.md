@@ -22,13 +22,8 @@ BART	bornIn	USA
 
 ```shell
 NTP/data/example_7.nlt
-5   #1(X, Y) :- #2(X, Y).
-
-5   #1(X, Y) :- #1(Y, X).
-
-5   #1(X, Y) :-
-    #2(X, Z),
-    #2(Z, Y).
+2	#1(X, Y) :- #2(X, Z),#3(Z, Y).
+2	#1(X, Y) :- #2(X, Y).
 ```
 
 ## Running
