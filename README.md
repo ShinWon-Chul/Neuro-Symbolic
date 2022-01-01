@@ -18,6 +18,12 @@ HOMER	placeOfBirth	NEWYORK
 BART	bornIn	USA
 ```
 
+```shell
+NTP/data/example_7.nlt
+2	#1(X, Y) :- #2(X, Z),#3(Z, Y).
+2	#1(X, Y) :- #2(X, Y).
+```
+
 - `*.txt` 파일은 *fact*를 나타냅니다. (example of a fact: `BART hasFather HOMER`)
 
 - `*.nlt` 파일은 *rule templates*을 나타냅니다. (example of a rule template: `#1(X,Y) :- #2(X,Z), #3(Z,Y)`)
@@ -34,11 +40,7 @@ NTP/data/example_7_rule.nl
 0.03153399	nationality(X,Y) :- nationality(X,Y)
 ```
 
-```shell
-NTP/data/example_7.nlt
-2	#1(X, Y) :- #2(X, Z),#3(Z, Y).
-2	#1(X, Y) :- #2(X, Y).
-```
+
 
 ## Running
 
