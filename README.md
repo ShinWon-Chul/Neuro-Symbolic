@@ -1,7 +1,8 @@
 # Knowledge Inference and Knowledge Completion Methods using Neuro-Symbolic Inductive Rules
 해당 레파지토리는 [뉴로 심볼릭 유도 규칙을 활용한 지식 추론 및 지식 완성 방법](http://oasis.dcollection.net/public_resource/pdf/200000491588_20211109213038.pdf)를 구현한 것입니다.  
-해당 코드는 지식 그래프와 규칙 템플릿을 입력으로 end-to-end leanring을 통해 지식 그래프로부터 새로운 지식을 추론할 수 있는 규칙을 자동으로 유도합니다. 
-해당 코드에 대한 documentation이나 직관적인 파악은 `Neuro-Symbolic/NTP/NTP_docu_1013.pdf`를 참조 하십시오.
+해당 코드는 지식 그래프와 규칙 템플릿을 입력으로 지식 그래프로부터 새로운 지식을 추론할 수 있는 규칙을 자동으로 유도하는 end-to-end leanring을 제공합니다.  
+해당 코드에 대한 documentation은 `[Neuro-Symbolic/NTP/NTP_docu_1013.pdf]`(https://github.com/ShinWon-Chul/Neuro-Symbolic/blob/main/NTP/NTP_docu_1013.pdf) 를 참조 하십시오.  
+해당 코드에 대한 직관적인 파악은 `[Neuro-Symbolic/papers/CSCI_NTP.pdf]` (https://github.com/ShinWon-Chul/Neuro-Symbolic/blob/main/papers/CSCI_NTP.pdf) 를 참조 하십시오.
 
 ## 데이터 형식
 NTP의 데이터는 `.txt` 기본적으로 트리플(subject, relation, object)형식을 따릅니다.
