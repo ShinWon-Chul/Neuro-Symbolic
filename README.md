@@ -44,4 +44,4 @@ NTP/data/example_7_rule.nl
 
 ## Running
 
-NTP를 실행하기 위한 기본 파일은 `ntp/Neural Theorem Prover_v2.0.ipynb` 입니다.
+NTP를 실행하기 위한 기본 파일은 [`ntp/Neural Theorem Prover_v2.0.ipynb`](https://github.com/ShinWon-Chul/Neuro-Symbolic/blob/main/NTP/Neural%20Theorem%20Prover_v2.0.ipynb) 입니다.
