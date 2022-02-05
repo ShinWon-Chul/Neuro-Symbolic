@@ -30,7 +30,7 @@ NTP/data/example_7.nlt
 
 ## 출력 예시
 ```shell
-NTP/data/example_7_rule_sorted.nl
+NTP/example_7_rule_sorted.nl
 (('p0', 'X', 'Y'), ('p1', 'X', 'Z'), ('p2', 'Z', 'Y'))
 0.23208559	nationality(X,Y) :- hasFather(X,Z), nationality(Z,Y)
 0.10631815	nationality(X,Y) :- placeOfBirth(X,Z), locatedIn(Z,Y)
