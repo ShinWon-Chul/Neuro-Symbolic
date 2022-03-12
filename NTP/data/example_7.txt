@@ -1,7 +1,8 @@
 BART	nationality	USA
-BART	placeOfBirth	NEWYORK
+BART	birthPlace	NEWYORK
 NEWYORK	locatedIn	USA
-BART	hasFather	HOMMER
-HOMMER	nationality	USA
-HOMMER	placeOfBirth	NEWYORK
-BART	bornIn	USA
+BART	hasFather	HOMER
+BART	hasGrandfather	ABE
+HOMER	hasParent	ABE
+LISA	sibling	BART
+BART	sibling	LISA
