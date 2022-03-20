@@ -14,8 +14,8 @@ NEWYORK	locatedIn	USA
 BART	hasFather	HOMER
 BART	hasGrandfather	ABE
 HOMER	hasParent	ABE
-LISA	sibling	BART
-BART	sibling	LISA
+LISA	sibling		BART
+BART	sibling		LISA
 ```
 
 ```shell
@@ -31,16 +31,14 @@ NTP/data/example_8.nlt
 ## 출력 예시
 ```shell
 /NTP/out/example_8/example_8_rule.tsv
-(('p0', 'X', 'Y'), ('p1', 'X', 'Z'), ('p2', 'Z', 'Y'))
-0.819403	nationality(X,Y) :- birthPlace(X,Z), locatedIn(Z,Y)
-0.74837		hasGrandfather(X,Y) :- hasFather(X,Z), hasParent(Z,Y)
+(('p0_0', 'X', 'Y'), ('p1_0', 'X', 'Z'), ('p2_0', 'Z', 'Y'))
+0.807938	hasGrandfather(X,Y) :- hasFather(X,Z), hasParent(Z,Y)
+0.708693	nationality(X,Y) :- birthPlace(X,Z), locatedIn(Z,Y)
 
-(('p0', 'X', 'Y'), ('p1', 'Y', 'X'))
-0.938703	sibling(X,Y) :- sibling(Y,X)
-0.094027	sibling(X,Y) :- sibling(Y,X)
+(('p0_1', 'X', 'Y'), ('p1_1', 'Y', 'X'))
+0.966852	sibling(X,Y) :- sibling(Y,X)
+0.063637	sibling(X,Y) :- sibling(Y,X)
 ```
-
-
 
 ## Running
 
