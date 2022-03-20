@@ -3,7 +3,7 @@
 해당 코드는 지식 그래프와 규칙 템플릿을 입력으로 지식 그래프로부터 새로운 지식을 추론할 수 있는 규칙을 자동으로 유도하는 end-to-end leanring을 제공합니다.  
 해당 코드에 대한 직관적인 파악은 [`papers/CSCI_NTP.pdf`](https://github.com/ShinWon-Chul/Neuro-Symbolic/blob/main/papers/CSCI_NTP.pdf)를 참조 하십시오.
 
-## 데이터 형식
+## Input Data Format
 NTP의 데이터는 `.txt` 기본적으로 트리플(subject, relation, object)형식을 따릅니다.
 
 ```shell
@@ -28,7 +28,7 @@ NTP/data/example_8.nlt
 
 - `*.nlt` 파일은 *rule templates*을 나타냅니다. (example of a rule template: `#1(X,Y) :- #2(X,Z), #3(Z,Y)`)
 
-## 출력 예시
+## Output Example
 ```shell
 /NTP/out/example_8/example_8_rule.tsv
 (('p0_0', 'X', 'Y'), ('p1_0', 'X', 'Z'), ('p2_0', 'Z', 'Y'))
