@@ -7,7 +7,9 @@
 입력 데이터의 `*.txt` 파일은 지식 그래프로 기본적으로 트리플(subject, relation, object)형식을 따릅니다.
 - `*.txt` 파일의 각 line은 **fact**를 나타냅니다. 
 	- fact: `BART hasFather HOMER`  
+
 <br/>
+
 입력 데이터의 `*.nlt` 파일은 규칙 템플릿이 저장되어 있습니다.  
 - `*.nlt` 파일의 각 line은 **rule templates**을 나타냅니다. 
 	- rule template: `2	 #1(X,Y) :- #2(X,Z), #3(Z,Y)`
@@ -17,8 +19,10 @@
 - rule schema는 `:-`를 기준으로 좌변은 conclusion, 우변은 conclusion을 추론하기 위한 condition으로 구성됩니다.  
 	- 좌변 : `#1(X, Y)`
 	- 우변 : `#2(X, Z),#3(Z, Y)`
-- augment number는 입력 지식 그래프로부터 해당 rule schema형태의 rule instance생성 개수를 의미합니다.  
+- augment number는 입력 지식 그래프로부터 해당 rule schema형태의 rule instance생성 개수를 의미합니다.
+
 <br/>
+
 아래의 `.txt` 파일과 `.nlt` 파일로부터 유도된 규칙은 아래의 **Output Example**을 참조 하십시오  
 
 ```shell
