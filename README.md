@@ -4,10 +4,17 @@
 해당 코드에 대한 직관적인 파악은 [`papers/CSCI_NTP.pdf`](https://github.com/ShinWon-Chul/Neuro-Symbolic/blob/main/papers/CSCI_NTP.pdf)를 참조 하십시오.
 
 ## Input Data Format
-NTP의 데이터는 `.txt` 기본적으로 트리플(subject, relation, object)형식을 따릅니다.
+입력 데이터의 `.txt` 파일은 지식 그래프로 기본적으로 트리플(subject, relation, object)형식을 따릅니다.
+입력 데이터의 `.nlt` 파일은 규칙 스키마가 저장되어 있습니다.  
+해당 파일의 각 line은 규칙의 augment number : `2`, rule schema : `#1(X, Y) :- #2(X, Z),#3(Z, Y).`가 `tab`으로 분리되어있는 형태입니다.  
+rule schema는 `:-`를 기준으로 좌변(`#1(X, Y)`)은 conclusion 우변(`#2(X, Z),#3(Z, Y)`)은 conclusion을 추론하기 위한 condition으로 구성됩니다. 
+augment number는 입력 지식 그래프로부터 해당 rule schema형태의 rule instance생성 개수를 의미합니다.
+augment number와 rule schema는 사용자가 조정할 수 있는 hyper parameter입니다.  
+아래의 `.txt` 파일과 `.nlt` 파일로부터 유도된 규칙은 아래의 **Output Example**을 참조 하십시오
 
 ```shell
 NTP/data/example_8.txt
+
 BART	nationality	USA
 BART	birthPlace	NEWYORK
 NEWYORK	locatedIn	USA
@@ -16,10 +23,10 @@ BART	hasGrandfather	ABE
 HOMER	hasParent	ABE
 LISA	sibling		BART
 BART	sibling		LISA
-```
-
+``` 
 ```shell
 NTP/data/example_8.nlt
+
 2	#1(X, Y) :- #2(X, Z),#3(Z, Y).
 2	#1(X, Y) :- #2(Y, X).
 ```
@@ -31,6 +38,7 @@ NTP/data/example_8.nlt
 ## Output Example
 ```shell
 /NTP/out/example_8/example_8_rule.tsv
+
 (('p0_0', 'X', 'Y'), ('p1_0', 'X', 'Z'), ('p2_0', 'Z', 'Y'))
 0.807938	hasGrandfather(X,Y) :- hasFather(X,Z), hasParent(Z,Y)
 0.708693	nationality(X,Y) :- birthPlace(X,Z), locatedIn(Z,Y)
