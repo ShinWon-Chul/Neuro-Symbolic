@@ -9,8 +9,11 @@
 
 
 입력 데이터의 `*.nlt` 파일은 규칙 템플릿이 저장되어 있습니다.  
-- `*.nlt` 파일의 각 line은 *rule templates*을 나타냅니다. (example of a rule template: `2	#1(X,Y) :- #2(X,Z), #3(Z,Y)`)  
-- 해당 파일의 각 line은 규칙의 augment number : `2`, rule schema : `#1(X, Y) :- #2(X, Z),#3(Z, Y).`가 `tab`으로 분리되어있는 형태입니다.  
+- `*.nlt` 파일의 각 line은 *rule templates*을 나타냅니다. 
+	- (example of a rule template: `2	 #1(X,Y) :- #2(X,Z), #3(Z,Y)`)  
+- 해당 파일의 각 line은 augment number, rule schema가 `tab`으로 분리되어있는 형태입니다.
+	- augment number : `2`
+	- rule schema : `#1(X, Y) :- #2(X, Z),#3(Z, Y).`  
 - rule schema는 `:-`를 기준으로 좌변(`#1(X, Y)`)은 conclusion, 우변(`#2(X, Z),#3(Z, Y)`)은 conclusion을 추론하기 위한 condition으로 구성됩니다.  
 - augment number는 입력 지식 그래프로부터 해당 rule schema형태의 rule instance생성 개수를 의미합니다.  
 - augment number와 rule schema는 사용자가 조정할 수 있는 hyper parameter입니다.  
