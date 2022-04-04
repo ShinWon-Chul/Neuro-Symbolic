@@ -24,7 +24,7 @@
 <br/>
 
 아래의 `.txt` 파일과 `.nlt` 파일로부터 유도된 규칙은 아래의 **Output Example**을 참조 하십시오  
-[NTP/data/example_8.txt](/NTP/data/example_8.txt)
+[`NTP/data/example_8.txt`](/NTP/data/example_8.txt)
 ```shell
 BART	nationality	USA
 BART	birthPlace	NEWYORK
@@ -36,14 +36,14 @@ LISA	sibling		BART
 BART	sibling		LISA
 ``` 
 
-[NTP/data/example_8.nlt](/NTP/data/example_8.nlt)
+[`NTP/data/example_8.nlt`](/NTP/data/example_8.nlt)
 ```shell
 2	#1(X, Y) :- #2(X, Z),#3(Z, Y).
 2	#1(X, Y) :- #2(Y, X).
 ```
 
 ## Output Example
-[/NTP/out/example_8/example_8_rule.tsv](/NTP/out/example_8/example_8_rule.tsv)
+[`/NTP/out/example_8/example_8_rule.tsv`](/NTP/out/example_8/example_8_rule.tsv)
 ```shell
 (('p0_0', 'X', 'Y'), ('p1_0', 'X', 'Z'), ('p2_0', 'Z', 'Y'))
 0.952875	nationality(X,Y) :- birthPlace(X,Z), locatedIn(Z,Y)
