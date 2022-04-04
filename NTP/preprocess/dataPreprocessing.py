@@ -147,3 +147,12 @@ def padding(relation_path, rule_temp_path, rules, max_path, max_atom, neg_per_po
         rule_temp_path[query_idx] = tuple(rule_temp_path_to_query)
         
     return relation_path, rule_temp_path
+
+def convert_list_to_tensor(path_data):
+    
+    path_tensor = []
+    for i in path_data:
+        for j in i:
+            path_tensor.append(j)
+    path_tensor = torch.tensor(path_tensor)
+    return path_tensor
