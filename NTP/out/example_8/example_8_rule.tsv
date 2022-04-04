@@ -1,8 +1,8 @@
 (('p0_0', 'X', 'Y'), ('p1_0', 'X', 'Z'), ('p2_0', 'Z', 'Y'))
-0.853999	hasGrandfather(X,Y) :- hasFather(X,Z), hasParent(Z,Y)
-0.843132	nationality(X,Y) :- birthPlace(X,Z), locatedIn(Z,Y)
+0.952875	nationality(X,Y) :- birthPlace(X,Z), locatedIn(Z,Y)
+0.892625	hasGrandfather(X,Y) :- hasFather(X,Z), hasParent(Z,Y)
 
 (('p0_1', 'X', 'Y'), ('p1_1', 'Y', 'X'))
-0.985841	sibling(X,Y) :- sibling(Y,X)
-0.050203	sibling(X,Y) :- sibling(Y,X)
+0.957433	sibling(X,Y) :- sibling(Y,X)
+0.021941	sibling(X,Y) :- sibling(Y,X)
 
