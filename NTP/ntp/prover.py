@@ -178,7 +178,7 @@ def unification(goal, rule, KG, KG_index, rule_num, depth = 0,
         return unification(goal, rule, KG, KG_index, rule_num, depth, 
                            variable_substitution, rComp_substitution,rule_structure)
 
-def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict, neg_per_pos):
+def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict):
     '''
     - function: 
         1. Calls the unification function and performs backward chaining on the query triple
@@ -196,7 +196,6 @@ def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict, n
     rule_structure(DataFrame) -- a meta table with all rule template component information and rule numbers
     sym2id_dict(dictionary) -- a dictionary for mapping symbol-type relation to index
         (e.g. {'UNK': 0, 'PAD': 1, '#1_0_0': 2, ..., 'hasParent': 20, 'nationality': 21, ... })
-    neg_per_pos(int) -- the number of negative proof path to be sampled per positive proof path
 
     return:
     relation_path -- Set of unified KG relation paths for all query triples
@@ -206,6 +205,12 @@ def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict, n
         (e.g. if given Query triple = [nationality BART, USA] and Rule template = [#1(X, Y) :- #2(X, Z), #3(Z, Y)]
               then Rule template path = ['#1', '#2', '#3'])
     max_path(int) -- Maximum number of proof paths for all queries
+    unify_dict(dictionary) -- A dictionary mapping the unified KG relation to the relation of each rule template
+        (e.g. '#1_0': {'hasGrandfather', 'nationality'},
+              '#2_0': {'birthPlace', 'hasFather'},
+              '#3_0': {'hasParent', 'locatedIn'},
+              '#1_1': {'sibling'},
+              '#2_1': {'sibling'}})
     '''
     number = 0
     unify_dict = collections.defaultdict(set)##추가
