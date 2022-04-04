@@ -1,7 +1,3 @@
-"""
-data filtering
-	- proof path가 없는 데이터 제거
-"""
 import copy
 import random
 import torch
@@ -62,7 +58,6 @@ def negative_samplig(rel_path, rule_tamplate, KG_relation, augment_num, neg_per_
 
 
 def flatten(iter_object):
-
     for element in iter_object:
         if isinstance(element, Iterable):
             yield from flatten(element)
@@ -71,7 +66,6 @@ def flatten(iter_object):
             
 
 def data_filter(path_to_query):
-
     path_existence = True
     if len(list(flatten(path_to_query))) == 0:
         path_existence = False
@@ -79,7 +73,6 @@ def data_filter(path_to_query):
 
 
 def add_pad_token(rel_path_to_template, max_atom, sym2id_dict):
-
     for path_idx, rel_path in enumerate(rel_path_to_template):
         rel_path_to_template[path_idx] = list(map(lambda x : 
                                                   x + [sym2id_dict['PAD']]*(max_atom-len(rel_path[0])), rel_path))
@@ -149,7 +142,6 @@ def padding(relation_path, rule_temp_path, rules, max_path, max_atom, neg_per_po
     return relation_path, rule_temp_path
 
 def convert_list_to_tensor(path_data):
-    
     path_tensor = []
     for i in path_data:
         for j in i:
