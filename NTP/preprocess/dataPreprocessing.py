@@ -2,17 +2,76 @@
 data filtering
 	- proof path가 없는 데이터 제거
 """
-from collections.abc import Iterable
+import copy
+import random
+import torch
 import numpy as np
+from torch.utils.data import Dataset
+from collections.abc import Iterable
+
+class proof_path_dataset(Dataset): 
+    def __init__(self, relation_tensor, rule_temp_tensor, label, augment_num, KG, neg_per_pos, 
+                 id2sym_dict, sym2id_dict, unify_dict):
+        
+        self.relation_tensor = relation_tensor
+        self.rule_temp_tensor = rule_temp_tensor
+        self.augment_num = augment_num
+        self.KG_relation = set(KG['pred'])
+        self.neg_per_pos = neg_per_pos
+        self.id2sym_dict = id2sym_dict
+        self.unify_dict = unify_dict
+        self.sym2id_dict = sym2id_dict
+        self.label = label
+
+    def __len__(self): 
+        return len(self.relation_tensor)
+
+    def __getitem__(self, idx): 
+        rel_path = self.relation_tensor[idx]
+        rule_template= self.rule_temp_tensor[idx]
+        label = self.label
+        return rel_path, rule_template, label
+
+def negative_samplig(rel_path, rule_tamplate, KG_relation, augment_num, neg_per_pos, 
+                     sym2id_dict, id2sym_dict, unify_dict):
+
+    pos_neg_rel_path = copy.deepcopy(rel_path)
+    pos_neg_rule_path = copy.deepcopy(rule_tamplate)
+    for _ in range(neg_per_pos):
+        for p_id, path in enumerate(rel_path):
+            neg_path = []
+            neg_rule = []
+            if path[0][0] != sym2id_dict['PAD']: 
+                for rule_relation_idx in rule_tamplate[p_id][0]:
+                    rule_relation = '_'.join(id2sym_dict[rule_relation_idx].split('_')[:-1])
+                    neg_pred = list(KG_relation - unify_dict[rule_relation])
+
+                    if len(neg_pred) == 0:
+                        neg_path.append(sym2id_dict['PAD'])
+                        neg_rule.append(sym2id_dict['UNK'])
+                    else:
+                        neg_path.append(sym2id_dict[random.choice(neg_pred)])
+                        neg_rule.append(rule_relation_idx)
+                neg_path = [neg_path for _ in range(augment_num)]
+                neg_rule = [neg_rule for _ in range(augment_num)]
+
+            pos_neg_rel_path.append(neg_path)
+            pos_neg_rule_path.append(neg_rule)
+
+    return pos_neg_rel_path, pos_neg_rule_path
+
 
 def flatten(iter_object):
+
     for element in iter_object:
         if isinstance(element, Iterable):
             yield from flatten(element)
         else:
             yield element
             
+
 def data_filter(path_to_query):
+
     path_existence = True
     if len(list(flatten(path_to_query))) == 0:
         path_existence = False
@@ -20,10 +79,12 @@ def data_filter(path_to_query):
 
 
 def add_pad_token(rel_path_to_template, max_atom, sym2id_dict):
+
     for path_idx, rel_path in enumerate(rel_path_to_template):
         rel_path_to_template[path_idx] = list(map(lambda x : 
                                                   x + [sym2id_dict['PAD']]*(max_atom-len(rel_path[0])), rel_path))
     return rel_path_to_template
+
 
 def padding(relation_path, rule_temp_path, rules, max_path, max_atom, neg_per_pos, sym2id_dict):
     """

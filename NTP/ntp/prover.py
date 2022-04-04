@@ -178,30 +178,6 @@ def unification(goal, rule, KG, KG_index, rule_num, depth = 0,
         return unification(goal, rule, KG, KG_index, rule_num, depth, 
                            variable_substitution, rComp_substitution,rule_structure)
 
-def create_unify_dict(unified_rel_path):
-    unify_dict = collections.defaultdict(set)
-    unified_rel_path = list(itertools.chain.from_iterable(unified_rel_path))
-    for key, value in unified_rel_path:
-        unify_dict[key].add(value)
-    return unify_dict
-
-def negative_sampling(unified_rel_path, unify_dict, KG):
-    neg_unified_rel_path = copy.deepcopy(unified_rel_path)
-    for path_idx, path in enumerate(neg_unified_rel_path):
-        for group_idx, group in enumerate(path):
-            rule_pred = group[0]
-            pos_pred = unify_dict[rule_pred]
-            KG_pred = set(KG['pred'])
-            neg_pred = KG_pred - pos_pred
-
-            if len(neg_pred) == 0:
-                neg_unified_rel_path[path_idx][group_idx] = (rule_pred, 'UNK')
-            else:
-                neg_sym = random.choice(list(neg_pred))
-                neg_unified_rel_path[path_idx][group_idx] = (rule_pred, neg_sym)
-                
-    return neg_unified_rel_path
-
 def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict, neg_per_pos):
     '''
     - function: 
@@ -232,6 +208,7 @@ def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict, n
     max_path(int) -- Maximum number of proof paths for all queries
     '''
     number = 0
+    unify_dict = collections.defaultdict(set)##추가
     relation_path = []
     rule_temp_path = []
     max_path = 0
@@ -256,19 +233,16 @@ def backward_chaining(query, KG, KG_index, rules, rule_structure, sym2id_dict, n
                                  for path in unified_rel_path]
                 aug_rule_temp_path = [[list(map(lambda x : sym2id_dict[f'{x[0]}_{str(rule_num)}_{str(aug_num)}'], path)) 
                                       for aug_num in range(rule[-1])] for path in unified_rel_path]
-                #negative sampling
-                unify_dict = create_unify_dict(unified_rel_path)
-                for i in range(neg_per_pos):
-                    neg_unified_rel_path = negative_sampling(unified_rel_path, unify_dict, KG)
-                    neg_aug_rel_path = [[list(map(lambda x : sym2id_dict[x[1]], path))]*rule[-1] 
-                                      for path in neg_unified_rel_path]
-                    aug_rel_path += neg_aug_rel_path
-                aug_rule_temp_path += aug_rule_temp_path * neg_per_pos
-
+                
+                
+                unified_rel_path = list(itertools.chain.from_iterable(unified_rel_path))
+                for key, value in unified_rel_path:
+                    unify_dict[f'{key}_{rule_num}'].add(value)
+                
                 aug_rel_path_list.append(aug_rel_path)
                 aug_rule_temp_path_list.append(aug_rule_temp_path)
                 
         relation_path.append(tuple(aug_rel_path_list))
         rule_temp_path.append(tuple(aug_rule_temp_path_list))
 
-    return relation_path, rule_temp_path, max_path
+    return relation_path, rule_temp_path, max_path, unify_dict
