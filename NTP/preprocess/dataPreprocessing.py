@@ -6,17 +6,10 @@ from torch.utils.data import Dataset
 from collections.abc import Iterable
 
 class proof_path_dataset(Dataset): 
-    def __init__(self, relation_tensor, rule_temp_tensor, label, augment_num, KG, neg_per_pos, 
-                 id2sym_dict, sym2id_dict, unify_dict):
+    def __init__(self, relation_tensor, rule_temp_tensor, label):
         
         self.relation_tensor = relation_tensor
         self.rule_temp_tensor = rule_temp_tensor
-        self.augment_num = augment_num
-        self.KG_relation = set(KG['pred'])
-        self.neg_per_pos = neg_per_pos
-        self.id2sym_dict = id2sym_dict
-        self.unify_dict = unify_dict
-        self.sym2id_dict = sym2id_dict
         self.label = label
 
     def __len__(self): 
