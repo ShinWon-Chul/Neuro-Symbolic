@@ -26,7 +26,6 @@
 
 <br/>
 
-아래의 `.txt` 파일과 `.nlt` 파일로부터 유도된 규칙은 아래의 **Output Example**을 참조 하십시오  
 [`NTP/data/example_8.txt`](/NTP/data/example_8.txt)
 ```shell
 BART	nationality	USA
