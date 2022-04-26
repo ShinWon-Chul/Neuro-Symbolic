@@ -6,8 +6,6 @@
 - inverse : `X (rel) Y then Y (rel) X`
 - equality : `X (rel) Y then X (rel) Y`  
 
-해당 코드에 대한 직관적인 파악은 [`papers/CSCI_NTP.pdf`](/papers/CSCI_NTP.pdf)를 참조 하십시오.
-
 ## Input Data Format
 입력 데이터의 `*.txt` 파일은 지식 그래프로 기본적으로 트리플(subject, relation, object)형식을 따릅니다.
 - `*.txt` 파일의 각 line은 **fact**를 나타냅니다. 
