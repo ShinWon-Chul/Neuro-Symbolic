@@ -2,9 +2,9 @@
 해당 레파지토리는 [뉴로 심볼릭 유도 규칙을 활용한 지식 추론 및 지식 완성 방법](/papers/%EB%89%B4%EB%A1%9C%20%EC%8B%AC%EB%B3%BC%EB%A6%AD%20%EA%B8%B0%EB%B0%98%20%EA%B7%9C%EC%B9%99%20%EC%9C%A0%EB%8F%84%20%EB%B0%8F%20%EC%B6%94%EB%A1%A0%20%EC%97%94%EC%A7%84%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%A7%80%EC%8B%9D%20%EC%99%84%EC%84%B1%20%EC%8B%9C%EC%8A%A4%ED%85%9C.pdf)를 구현한 것입니다.  
 해당 코드는 지식 그래프와 규칙 템플릿을 입력으로 지식 그래프로부터 새로운 지식을 추론할 수 있는 규칙을 자동으로 유도하는 end-to-end leanring을 제공하며 지식 그래프로부터 다음과 같은 관계에 해당하는 추론 규칙을 유도합니다.  
 
-- transitivity : X (rel) Z, Z (rel) Y then X (rel) Y or X (rel) Z, Z (rel) W, W (rel) Y then X (rel) Y, ...
-- inverse : X (rel) Y then Y (rel) X
-- equality : X (rel) Y then X (rel) Y  
+- transitivity : `X (rel) Z, Z (rel) Y then X (rel) Y` or `X (rel) Z, Z (rel) W, W (rel) Y then X (rel) Y`, ...
+- inverse : `X (rel) Y then Y (rel) X`
+- equality : `X (rel) Y then X (rel) Y`  
 
 해당 코드에 대한 직관적인 파악은 [`papers/CSCI_NTP.pdf`](/papers/CSCI_NTP.pdf)를 참조 하십시오.
 
